@@ -83,9 +83,10 @@ def get_info_container(url):
             .find("div", class_="swiper-wrapper")\
             .find_all("div", class_="swiper-slide")
             for img_link in img_links:
-                img_list.append("https://www.artplast.ru/" + img_link.find("a").get("href"))
+                img_list.append("https://www.artplast.ru" + img_link.find("a").get("href"))
         except:
             img_list.append("Изображения не найдены")
+        print(img_list)
 
         try:
             package_count = soup.find("div", class_="grid grid-cols-1 gap-8 lg:gap-16 lg:grid-cols-4")\
@@ -121,24 +122,24 @@ def get_info_container(url):
         except:
             pass
 
-        with open("itog.txt", "a", encoding="utf-8") as file:
-            file.write(f"{name}\t")
-            for disc in discr:
-                file.write(f"{disc}, ")
-            file.write(f"\t{art}\t{price}\t")
-            for img in img_list:
-                file.write(f"{img} ")
-            file.write(f"\t{count_up}\t{count_sht}\t{equals}\t")
-            for category in category_list:
-                file.write(f"{category}, ")
-            file.write("\t")
-
-            for characteristic in characteristic_names:
-                file.write(f"{try_return(characteristic)}\t")
-
-            file.write(url)
-
-            file.write("\n")
+        # with open("itog.txt", "a", encoding="utf-8") as file:
+        #     file.write(f"{name}\t")
+        #     for disc in discr:
+        #         file.write(f"{disc}, ")
+        #     file.write(f"\t{art}\t{price}\t")
+        #     for img in img_list:
+        #         file.write(f"{img} ")
+        #     file.write(f"\t{count_up}\t{count_sht}\t{equals}\t")
+        #     for category in category_list:
+        #         file.write(f"{category}, ")
+        #     file.write("\t")
+        #
+        #     for characteristic in characteristic_names:
+        #         file.write(f"{try_return(characteristic)}\t")
+        #
+        #     file.write(url)
+        #
+        #     file.write("\n")
         count+=1
     except:
         print(f"WARNING ---------------------- {count}")
@@ -148,13 +149,13 @@ def get_info_container(url):
 # for i in range(4):
 #     get_data(f"https://www.artplast.ru/catalog/kanctovary/?page={i}")
 
-with open("links.txt", "r", encoding="utf-8") as linkss:
-    links = linkss.readlines()
-linkss.close()
+# with open("links.txt", "r", encoding="utf-8") as linkss:
+#     links = linkss.readlines()
+# linkss.close()
+#
+# for link in links:
+#     characteristic_list.clear()
+#     print(f"{count}")
+#     get_info_container(link[:-1])
 
-for link in links:
-    characteristic_list.clear()
-    print(f"{count}")
-    get_info_container(link[:-1])
-
-# get_info_container("https://www.artplast.ru/tovar/sousnik-s-kryshkoy-nakhlobuchkoy-prozrachnyy-50-ml-d-60-mm-kh1200-1244-box4food-rossiya-43657/")
+get_info_container("https://www.artplast.ru/tovar/dozator-dlya-myla-peny-laima-professional-original-nalivnoy-0-8-l-belyy-abs-plastik-rossiya-53580/")
